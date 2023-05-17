@@ -1,17 +1,48 @@
 #!/usr/bin/python3
 
+# define the values of the roman numerals.
+def value(v):
+    if v == 'I':
+        return 1
+    if v == 'V':
+        return 5
+    if v == 'X':
+        return 10
+    if v == 'L':
+        return 50
+    if v == 'C':
+        return 100
+    if v == 'D':
+        return 500
+    if v == 'M':
+        return 1000
+    return -1
 
+
+# function to convert to integer
 def roman_to_int(roman_string):
-    """Converts a Roman Numeral to an integer"""
-    if type(roman_string) is not str or roman_string is None:
+    if roman_string is None or type(roman_string) is not str:
         return 0
     else:
-        roman_dec = {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100,
-                     "D": 500, "M": 1000}
-        decs = [roman_dec.get(x) for x in roman_string]
         res = 0
-        for i in range(len(decs)):
-            res += decs[i]
-            if decs[i - 1] < decs[i] and i != 0:
-                res += (decs[i] - decs[i - 1] - decs[i - 1]
+        i = 0
+
+        while (i < len(roman_string)):
+            # getting value of symbol
+            sa = value(roman_string[i])
+
+            if (i + 1 < len(roman_string)):
+                # getting value of symbol
+                sb = value(roman_string[i + 1])
+
+                # comparing both values
+                if (sa >= sb):
+                    res = res + sa
+                    i = i + 1
+                else:
+                    res = res + sb - sa
+                    i = i + 2
+            else:
+                res = res + sa
+                i = i + 1
         return res
