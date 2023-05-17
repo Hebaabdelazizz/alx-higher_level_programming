@@ -1,3 +1,4 @@
 #!/usr/bin/python3
-def mutiply_list_map(my_list=[], number=0):
-    return list(map(lambda my_list[x]: my_list[x] * number, my_list))
+def multiply_list_map(my_list=[], number=0):
+    """ returns a list with all values multiplied"""
+    return (list(map(lambda x: x*number, my_list)))
